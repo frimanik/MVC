@@ -1,15 +1,13 @@
 package org.example.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="book")
 public class Book {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     @NotNull
     String title;

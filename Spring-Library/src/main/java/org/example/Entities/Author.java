@@ -1,9 +1,6 @@
 package org.example.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
@@ -13,6 +10,7 @@ import java.util.List;
 @Table(name="author")
 public class Author {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     @NotNull
     String name;
