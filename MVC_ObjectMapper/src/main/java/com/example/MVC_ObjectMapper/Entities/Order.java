@@ -1,6 +1,5 @@
 package com.example.MVC_ObjectMapper.Entities;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -14,12 +13,13 @@ import java.util.Objects;
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long orderId;
     @ManyToOne(cascade=CascadeType.ALL )
     Customer customer;
     @OneToMany(cascade=CascadeType.ALL)
     List<Product> products;
-    @NotNull
+
     LocalDateTime orderDate;
     @NotNull
     String shippingAddress;

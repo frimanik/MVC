@@ -1,6 +1,7 @@
 package com.example.MVC_ObjectMapper.Controllers;
 
 import com.example.MVC_ObjectMapper.Entities.Product;
+import com.example.MVC_ObjectMapper.Exceptions.OrderWasNotFoundException;
 import com.example.MVC_ObjectMapper.Exceptions.ProductWasNotFoundException;
 import com.example.MVC_ObjectMapper.Repositories.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,11 +31,7 @@ public class ProductController {
 
     @GetMapping("/getProduct")
     public String getProduct(@PathVariable  Long id) throws JsonProcessingException {
-        if (!productRepository.existsById(id)) {
-            throw new ProductWasNotFoundException(
-                    "product with this id does not exist");
-        }
-        return objectMapper.writeValueAsString(productRepository.findById(id).get());
+        return objectMapper.writeValueAsString(productRepository.findById(id).orElseThrow(()-> new ProductWasNotFoundException(("product with this id does not exist"))));
     }
 
     @PostMapping("/addProduct")

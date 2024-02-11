@@ -29,7 +29,6 @@ public class TestJson {
             "        \"price\": 5,\n" +
             "        \"quantityInStock\": 100\n" +
             "    }],\n" +
-            "  \"orderDate\": \"2024-02-06T12:34:56.789\",\n" +
             "  \"shippingAddress\": \"Over There\",\n" +
             "  \"totalPrice\": 120,\n" +
             "  \"status\": \"Awaiting\"\n" +

@@ -32,26 +32,23 @@ public class OrderControllerTests {
 
 	@Test
 	void testGetOrder_OrderExists() throws JsonProcessingException {
-		// Arrange
+
 		String orderJson = TestJson.json;
 		Order order = objectMapper.readValue(orderJson, Order.class);
 		when(orderRepository.existsById(order.getOrderId())).thenReturn(true);
 		when(orderRepository.findById(order.getOrderId())).thenReturn(Optional.of(order));
 
-		// Act
 		Order result = objectMapper.readValue(orderController.getOrder(order.getOrderId()),Order.class);
 
-		// Assert
 		assert(result).equals(order);
 	}
 
 	@Test
 	void testGetOrder_OrderNotFound() {
-		// Arrange
+
 		long orderId = 1;
 		when(orderRepository.existsById(orderId)).thenReturn(false);
 
-		// Act & Assert
 		assertThatThrownBy(() -> orderController.getOrder(orderId))
 				.isInstanceOf(OrderWasNotFoundException.class)
 				.hasMessage("Order with this id does not exist");
@@ -59,15 +56,13 @@ public class OrderControllerTests {
 
 	@Test
 	void testAddOrder() throws JsonProcessingException {
-		// Arrange
+
 		String orderJson = TestJson.json;
 		Order order = objectMapper.readValue(orderJson,Order.class);
 		when(orderRepository.save(any())).thenReturn(order);
 
-		// Act
 		Order savedOrder = orderController.addOrder(orderJson);
 
-		// Assert
 		assert(savedOrder.equals(order));
 	}
 }
